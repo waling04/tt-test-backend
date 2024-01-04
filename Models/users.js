@@ -1,5 +1,4 @@
 const mongoose = require('mongoose')
-const { emit } = require('nodemon')
 
 // model
 const userSchema = mongoose.Schema({
@@ -18,7 +17,7 @@ const userSchema = mongoose.Schema({
     email: {
         type: String,required: true
     }
-    // createdAt และ updatedAt
+    // createdAt and updatedAt
 },{timestamps: true})
 
 module.exports = mongoose.model('users', userSchema)
