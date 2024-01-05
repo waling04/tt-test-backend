@@ -18,7 +18,7 @@ const validateUserData = async (req, res, next) => {
   }
 
   // check tel number
-  if (tel.length !== 10 || !/^\d+$/.test(tel)) {
+  if (!/^0\d{9}$/.test(tel)) {
     return res.status(400).send("เบอร์โทรศัพท์ไม่ถูกต้อง");
   }
 
