@@ -13,12 +13,7 @@ const validateUserData = async (req, res, next) => {
     return res.status(400).send("กรุณากรอกข้อมูลให้ครบทุกช่อง");
   }
 
-  // check HN number
-  const isNumeric = !isNaN(number) && !isNaN(parseFloat(number));
-  const hasValidLength = number.toString().length === 6;
-
-  if (!isNumeric || !hasValidLength) {
-    console.log(number);
+  if (number.length !== 6 || !/^\d+$/.test(number)) {
     return res.status(400).send("เลขประจำตัวควรมี 6 ตัว กรุณาตรวจสอบอีกครั้ง");
   }
 
@@ -60,6 +55,7 @@ exports.create = [
   validateUserData,
   async (req, res) => {
     try {
+        console.log(req.body.number)
       const existingNumber = await users
         .findOne({ number: req.body.number })
         .exec();
